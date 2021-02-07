@@ -1,7 +1,3 @@
-let min;
-let max;
-let countComma;
-
 let getRandomInt = function(min, max) {
   return getRandomFloat(min,max,0);
 }
@@ -15,6 +11,6 @@ let getRandomFloat = function(min, max, countComma) {
     }
 }
 
-getRandomInt();
-getRandomFloat();
+getRandomInt(min,max);
+getRandomFloat(min,max,countComma);
 console.log('Полученное значение: '+getRandInt(2.6,3.5,0));
