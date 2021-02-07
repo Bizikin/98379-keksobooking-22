@@ -1,7 +1,3 @@
-let min;
-let max;
-let countComma;
-
 let getRandomInt = function(min, max) {
   return getRandomFloat(min,max,0);
 }
