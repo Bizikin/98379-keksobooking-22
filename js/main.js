@@ -12,5 +12,5 @@ let getRandomFloat = function(min, max, countComma) {
   }
 }
 
-getRandomInt(min, max);
-getRandomFloat(min, max, countComma);
+getRandomInt();
+getRandomFloat();
