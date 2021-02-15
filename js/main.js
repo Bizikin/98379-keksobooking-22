@@ -1,5 +1,3 @@
-'use strict'
-
 let getRandomInt = function(min, max) {
   return getRandomFloat(min, max, 0);
 }
@@ -30,7 +28,7 @@ let getRandomArray = function(array, values) {
 
 
 
-// объекты-библиотеки содержащие значения
+// справочники содержащие значения
 
 const TITLE_VALUES = [
   'Каморка мечты',
@@ -47,7 +45,7 @@ const TYPE_VALUES = [
   'bungalow',
 ];
 
-const CHECK_VALUES = [
+const TIME_VALUES = [
   '12:00',
   '13:00',
   '14:00',
@@ -81,56 +79,51 @@ const PHOTO_VALUES = [
 let example;
 let new_array;
 
+const MAX_ROOMS = 3;
+const MAX_PRICE = 100000;
+const MAX_GUESTS = 5;
+const ADVERTS_COUNT = 10;
+
 let createAdvert = function() {
-  let example = {
+  let loc = {
+    x: getRandomFloat(35.65000, 35.70000, 5),
+    y: getRandomFloat(139.70000, 139.80000, 5)
+  }
+  let result = {
     autor: {
       avatar: 'img/avatars/user0' + getRandomInt(1, 8) + '.png'
     },
     offer: {
       title: getRandomValue(TITLE_VALUES),
-      address: location1.x + ',' + location1.y,
-      price: getRandomInt(1, Number.MAX_SAFE_INTEGER),
+      address: loc.x + ',' + loc.y,
+      price: getRandomInt(1, MAX_PRICE),
       type: getRandomValue(TYPE_VALUES),
-      rooms: getRandomInt(1, Number.MAX_SAFE_INTEGER),
-      guests: getRandomInt(1, Number.MAX_SAFE_INTEGER),
-      checkin: getRandomValue(CHECK_VALUES),
-      checkout: getRandomValue(CHECK_VALUES),
-      features: getRandomArray(FEATURES_VALUES, getRandomInt(1, FEATURES_VALUES.length)),
+      rooms: getRandomInt(1, MAX_ROOMS),
+      guests: getRandomInt(1, MAX_GUESTS),
+      checkin: getRandomValue(TIME_VALUES),
+      checkout: getRandomValue(TIME_VALUES),
+      features: getRandomArray(FEATURES_VALUES, getRandomInt(0, FEATURES_VALUES.length)),
       description: getRandomValue(DESC_VALUES),
       photos: getRandomArray(PHOTO_VALUES, getRandomInt(1, PHOTO_VALUES.length))
+    },
+    location: {
+      x: loc.x,
+      y: loc.y
     }
   }
-  console.log(example);
-  return example;
+  // let advert = Object.assign(example.autor, example.offer);
+  // console.log(advert);
+  return result;
 }
 
-let location1 = {
-  x: getRandomFloat(35.65000, 35.70000, 5),
-  y: getRandomFloat(139.70000, 139.80000, 5)
-}
+
 //создание массива
-let createAdverts = function() {
-   for (let i = 0; i>10;i++) {
-   	 
-    new_array = example.map(createAdvert());
-    return new_array;
-	}
+let createAdverts = function(count) {
+  const result = [];
+  for (let i = 1; i < count; i++) {
+    result.push(createAdvert());
+  }
+  return result;
 }
 
-
-
-
-// console.log(autor.avatar);
-// console.log(offer.title);
-// console.log(offer.address);
-// console.log(offer.price);
-// console.log(offer.type);
-// console.log(offer.rooms);
-// console.log(offer.guests);
-// console.log(offer.checkin);
-// console.log(offer.checkout);
-// console.log(offer.features);
-// console.log(offer.description);
-// console.log(offer.photos);
-createAdverts();
-console.log(new_array);
+console.log(createAdverts(n));
