@@ -126,4 +126,6 @@ let createAdverts = function(count) {
   return result;
 }
 
+createAdverts(10);
+
 // console.log(createAdverts(n));
