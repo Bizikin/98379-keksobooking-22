@@ -76,22 +76,22 @@ const PHOTO_VALUES = [
 
 //объекты по условиям домашнего задания
 
-let example;
-let new_array;
+ 
+
 
 const MAX_ROOMS = 3;
 const MAX_PRICE = 100000;
 const MAX_GUESTS = 5;
-const ADVERTS_COUNT = 10;
+
 
 let createAdvert = function() {
   let loc = {
     x: getRandomFloat(35.65000, 35.70000, 5),
-    y: getRandomFloat(139.70000, 139.80000, 5)
+    y: getRandomFloat(139.70000, 139.80000, 5),
   }
   let result = {
     autor: {
-      avatar: 'img/avatars/user0' + getRandomInt(1, 8) + '.png'
+      avatar: 'img/avatars/user0' + getRandomInt(1, 8) + '.png',
     },
     offer: {
       title: getRandomValue(TITLE_VALUES),
@@ -104,12 +104,12 @@ let createAdvert = function() {
       checkout: getRandomValue(TIME_VALUES),
       features: getRandomArray(FEATURES_VALUES, getRandomInt(0, FEATURES_VALUES.length)),
       description: getRandomValue(DESC_VALUES),
-      photos: getRandomArray(PHOTO_VALUES, getRandomInt(1, PHOTO_VALUES.length))
+      photos: getRandomArray(PHOTO_VALUES, getRandomInt(1, PHOTO_VALUES.length)),
     },
     location: {
       x: loc.x,
-      y: loc.y
-    }
+      y: loc.y,
+    },
   }
   // let advert = Object.assign(example.autor, example.offer);
   // console.log(advert);
@@ -126,4 +126,4 @@ let createAdverts = function(count) {
   return result;
 }
 
-console.log(createAdverts(n));
+// console.log(createAdverts(n));
