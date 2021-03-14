@@ -1,4 +1,4 @@
- const TITLE_VALUES = [
+const TITLE_VALUES = [
   'Каморка мечты',
   'Белый дом',
   'Уютное гнездо',
