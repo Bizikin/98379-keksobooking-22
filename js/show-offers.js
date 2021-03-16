@@ -48,9 +48,9 @@ const showOffers = function (arrayCards) {
     cardElement.querySelector('.popup__avatar').src = author.avatar;
     cardElement.querySelector('.popup__title').textContent = offer.title;
     cardElement.querySelector('.popup__text--address').textContent = offer.address;
-    cardElement.querySelector('.popup__text--price').textContent = offer.price.concat(' ₽/ночь');
+    cardElement.querySelector('.popup__text--price').textContent = offer.price + ' ₽/ночь';
     cardElement.querySelector('.popup__type').textContent = stringifyOfferType(offer.type);
-    cardElement.querySelector('.popup__text--capacity').textContent = offer.rooms.concat(' комнаты для ', offer.guests, ' гостей');
+    cardElement.querySelector('.popup__text--capacity').textContent = offer.rooms + ' комнаты для ' + offer.guests + ' гостей';
     cardElement.querySelector('.popup__text--time').textContent = 'Заезд после '.concat(offer.checkin, ' выезд до ', offer.checkout);
     cardElement.querySelector('.popup__description').textContent = offer.description;
     setupFeatures(cardElement.querySelector('.popup__features'), offer);
