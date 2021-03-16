@@ -43,7 +43,7 @@ let createAdvert = function() {
     location: {
       x: loc.x,
       y: loc.y,
-    }
+    },
   }
 }
 
