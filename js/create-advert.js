@@ -17,11 +17,7 @@ import {
 
 
 let createAdvert = function() {
-  let loc = {
-    x: getRandomFloat(35.65000, 35.70000, 5),
-    y: getRandomFloat(139.70000, 139.80000, 5),
-  }
-  let result = {
+  return {
     autor: {
       avatar: 'img/avatars/user0' + getRandomInt(1, 8) + '.png',
     },
@@ -39,19 +35,23 @@ let createAdvert = function() {
       photos: getRandomArray(PHOTO_VALUES, getRandomInt(1, PHOTO_VALUES.length)),
     },
     location: {
-      x: loc.x,
-      y: loc.y,
-    },
+      x: getRandomFloat(35.65000, 35.70000, 5),
+    y: getRandomFloat(139.70000, 139.80000, 5),
+    }
   }
-  return result;
 }
 
-let createAdverts = function(count) {
-  const result = [];
-  for (let i = 1; i < count; i++) {
-    result.push(createAdvert());
+const DEALS_COUNT = 10;
+
+let createAdverts = function(DEALS_COUNT) {
+  const arrayCards = [];
+  for (let i = 1; i < DEALS_COUNT; i++) {
+    arrayCards.push(createAdvert());
   }
-  return result;
+  return arrayCards;
 }
+
+
+// const createAdverts = () => new Array(DEALS_COUNT).fill(null).map(() => createAdvert());
 
 export {createAdverts};
