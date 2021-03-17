@@ -1,27 +1,31 @@
-const typeEstate = document.querySelector('#type');
-const pricePerNight = document.querySelector('#price');
-const timeInSelect = document.querySelector('#timein');
-const timeOutSelect = document.querySelector('#timeout');
+const typeEstateElement = document.querySelector('#type');
+const pricePerNightElement = document.querySelector('#price');
+const timeInSelectElement = document.querySelector('#timein');
+const timeOutSelectElement = document.querySelector('#timeout');
+const bungalowMinPrice = 0;
+const flatMinPrice = 1000;
+const houseMinPrice = 5000;
+const palaceMinPrice = 10000;
 
 
-typeEstate.addEventListener('click', function(e) {
+typeEstateElement.addEventListener('click', function(e) {
   e.preventDefault();
-  if (typeEstate.value == 'bungalow') {
-    pricePerNight.placeholder = '0';
-    pricePerNight.min = '0';
-  } else if (typeEstate.value == 'flat') {
-    pricePerNight.placeholder = '1000';
-    pricePerNight.min = '1000';
-  } else if (typeEstate.value == 'house') {
-    pricePerNight.placeholder = '5000';
-    pricePerNight.min = '5000';
-  } else if (typeEstate.value == 'palace') {
-    pricePerNight.placeholder = '10000';
-    pricePerNight.min = '10000';
+  if (typeEstateElement.value == 'bungalow') {
+    pricePerNightElement.placeholder = bungalowMinPrice;
+    pricePerNightElement.min = bungalowMinPrice;
+  } else if (typeEstateElement.value == 'flat') {
+    pricePerNightElement.placeholder = flatMinPrice;
+    pricePerNightElement.min = flatMinPrice;
+  } else if (typeEstateElement.value == 'house') {
+    pricePerNightElement.placeholder = houseMinPrice;
+    pricePerNightElement.min = houseMinPrice;
+  } else if (typeEstateElement.value == 'palace') {
+    pricePerNightElement.placeholder = palaceMinPrice;
+    pricePerNightElement.min = palaceMinPrice;
   }
 });
 
-timeInSelect.addEventListener('change', (evt) => {
+timeInSelectElement.addEventListener('change', (evt) => {
   const time = evt.target.value;
-  timeOutSelect.value = time;
+  timeOutSelectElement.value = time;
 });
