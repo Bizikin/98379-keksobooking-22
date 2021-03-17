@@ -7,10 +7,10 @@ const TITLE_VALUES = [
 ];
 
 const TYPE_VALUES = [
-  'palace',
   'flat',
-  'house',
   'bungalow',
+  'house',
+  'palace',
 ];
 
 const TIME_VALUES = [
@@ -47,12 +47,13 @@ const MAX_PRICE = 100000;
 const MAX_GUESTS = 5;
 
 export {
-  TITLE_VALUES, 
-  TYPE_VALUES, 
-  TIME_VALUES, 
-  FEATURES_VALUES, 
-  DESC_VALUES, 
-  PHOTO_VALUES, 
-  MAX_ROOMS, 
-  MAX_PRICE, 
-  MAX_GUESTS};
+  TITLE_VALUES,
+  TYPE_VALUES,
+  TIME_VALUES,
+  FEATURES_VALUES,
+  DESC_VALUES,
+  PHOTO_VALUES,
+  MAX_ROOMS,
+  MAX_PRICE,
+  MAX_GUESTS
+};

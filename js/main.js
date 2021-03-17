@@ -1,3 +1,6 @@
 import {createAdverts} from './create-advert.js';
+import {showOffers} from './show-offers.js';
 
-createAdverts(10);
+const adverts = createAdverts();
+
+showOffers(adverts);
