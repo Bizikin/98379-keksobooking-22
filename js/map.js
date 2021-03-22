@@ -59,6 +59,6 @@ for (let oneOffer of createAdverts) {
     lng: oneOffer.location.y,
   }, {
     icon: secondPinIcon,
-  }, );
+  });
   secondMarker.addTo(map).bindPopup(showOffers(createAdverts));
 }
