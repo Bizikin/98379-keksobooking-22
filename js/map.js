@@ -1,6 +1,6 @@
-import { createAdverts } from './create-advert.js';
-import { showOffers } from './show-offers.js';
-import { activeForm } from './nonactive-form.js';
+import {createAdverts} from './create-advert.js';
+import {showOffers} from './show-offers.js';
+import {activeForm} from './nonactive-form.js';
 
 
 const L = window.L;
@@ -38,7 +38,7 @@ const mainMarker = L.marker({
 }, {
   draggable: true,
   icon: mainPinIcon,
-}, );
+});
 
 
 mainMarker.addTo(map);
@@ -52,8 +52,6 @@ address.value = `${locationPoint.lat}, ${locationPoint.lng}`
 mainMarker.on('move', (evt) => {
   address.value = `${evt.target.getLatLng().lat.toFixed(DOTSAFTERZERO)}, ${evt.target.getLatLng().lng.toFixed(DOTSAFTERZERO)}`;
 });
-
-console.log(createAdverts);
 
 for (let oneOffer of createAdverts) {
   const secondMarker = L.marker({
