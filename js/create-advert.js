@@ -47,17 +47,18 @@ let createAdvert = function() {
   }
 }
 
-const DEALS_COUNT = 10;
+// const DEALS_COUNT = 10;
 
-let createAdverts = function() {
-  const arrayCards = [];
-  for (let i = 1; i < DEALS_COUNT; i++) {
-    arrayCards.push(createAdvert());
-  }
-  return arrayCards;
-}
+// let createAdverts = function() {
+//   const arrayCards = [];
+//   for (let i = 1; i < DEALS_COUNT; i++) {
+//     arrayCards.push(createAdvert());
+//   }
+//   return arrayCards;
+// }
 
+const createAdverts = new Array(10).fill().map(createAdvert);
 
 // const createAdverts = () => new Array(DEALS_COUNT).fill(null).map(() => createAdvert());
 
-export { createAdverts };
+export {createAdverts};
