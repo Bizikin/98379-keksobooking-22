@@ -1,18 +1,18 @@
-import {createAdverts} from './create-advert.js';
-import {showOffers} from './show-offers.js';
-import {activeForm} from './nonactive-form.js';
+/* global L:readonly */
+import { adverts } from './create-advert.js';
+import { showOffers } from './show-offers.js';
+import { activeForm } from './nonactive-form.js';
 
-
-const L = window.L;
-const tokioCenterLat = 35.68950;
-const tokioCenterLng = 139.69171;
+const TOKIO_CENTER_LAT = 35.68950;
+const TOKIO_CENTER_LNG = 139.69171;
+const DEFAULT_ZOOM = 12;
 
 const map = L.map('map-canvas').on('load', () => {
   activeForm();
 }).setView({
-  lat: tokioCenterLat,
-  lng: tokioCenterLng,
-}, 12);
+  lat: TOKIO_CENTER_LAT,
+  lng: TOKIO_CENTER_LNG,
+}, DEFAULT_ZOOM);
 
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -33,8 +33,8 @@ const secondPinIcon = L.icon({
 });
 
 const mainMarker = L.marker({
-  lat: tokioCenterLat,
-  lng: tokioCenterLng,
+  lat: TOKIO_CENTER_LAT,
+  lng: TOKIO_CENTER_LNG,
 }, {
   draggable: true,
   icon: mainPinIcon,
@@ -53,12 +53,12 @@ mainMarker.on('move', (evt) => {
   address.value = `${evt.target.getLatLng().lat.toFixed(DOTSAFTERZERO)}, ${evt.target.getLatLng().lng.toFixed(DOTSAFTERZERO)}`;
 });
 
-for (let oneOffer of createAdverts) {
+for (let advert of adverts) {
   const secondMarker = L.marker({
-    lat: oneOffer.location.x,
-    lng: oneOffer.location.y,
+    lat: advert.location.x,
+    lng: advert.location.y,
   }, {
     icon: secondPinIcon,
   });
-  secondMarker.addTo(map).bindPopup(showOffers(createAdverts));
+  secondMarker.addTo(map).bindPopup(showOffers(adverts));
 }
