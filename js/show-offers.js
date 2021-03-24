@@ -2,7 +2,7 @@ const similarListElement = document.querySelector('.map__canvas');
 const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
 
 //Заменяем тип жилья из массива на текст
-const stringifyOfferType = function (params) {
+const stringifyOfferType = function(params) {
   if (params == 'flat') {
     return 'Квартира'
   } else if (params == 'bungalow') {
@@ -15,7 +15,7 @@ const stringifyOfferType = function (params) {
 }
 
 //Заполняем список с особенностями жилья
-const setupFeatures = function (params, key) {
+const setupFeatures = function(params, key) {
   params.textContent = '';
   for (let i = 0; i < key.features.length; i++) {
     let featureItem = document.createElement('li');
@@ -26,7 +26,7 @@ const setupFeatures = function (params, key) {
 }
 
 // Создаем картинки жилья
-const setupPhotos = function (params, key) {
+const setupPhotos = function(params, key) {
   params.textContent = '';
   for (let i = 0; i < key.photos.length; i++) {
     let imgitem = document.createElement('img');
@@ -39,10 +39,10 @@ const setupPhotos = function (params, key) {
   }
 }
 
-const showOffers = function (arrayCards) {
+const showOffers = function(arrayCards) {
   const similarListFragment = document.createDocumentFragment();
 
-  arrayCards.forEach(({author, offer}) => {
+  arrayCards.forEach(({ author, offer }) => {
     const cardElement = cardTemplate.cloneNode(true);
 
     cardElement.querySelector('.popup__avatar').src = author.avatar;
@@ -62,4 +62,5 @@ const showOffers = function (arrayCards) {
   similarListElement.appendChild(similarListFragment);
 }
 
-export {showOffers};
+
+export { showOffers };

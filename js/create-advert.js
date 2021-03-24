@@ -47,17 +47,8 @@ let createAdvert = function() {
   }
 }
 
-const DEALS_COUNT = 10;
+const ADVERTS_COUNTS = 10;
 
-let createAdverts = function() {
-  const arrayCards = [];
-  for (let i = 1; i < DEALS_COUNT; i++) {
-    arrayCards.push(createAdvert());
-  }
-  return arrayCards;
-}
+const adverts = new Array(ADVERTS_COUNTS).fill().map(createAdvert);
 
-
-// const createAdverts = () => new Array(DEALS_COUNT).fill(null).map(() => createAdvert());
-
-export { createAdverts };
+export { adverts };
