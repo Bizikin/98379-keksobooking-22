@@ -10,14 +10,14 @@ const setDisabled = (element, disabled) => {
   element.disabled = disabled;
 };
 
-selectElements.forEach(setDisabled);
-fieldsetElements.forEach(setDisabled);
+// selectElements.forEach(setDisabled);
+// fieldsetElements.forEach(setDisabled);
 
 const activeForm = () => {
   mapFiltersElement.classList.remove('ad-form--disabled');
   adFormElement.classList.remove('ad-form--disabled');
-  selectElements.forEach(!setDisabled);
-  fieldsetElements.forEach(!setDisabled);
+  // selectElements.forEach(setDisabled);
+  // fieldsetElements.forEach(setDisabled);
 }
 
 export { activeForm };
