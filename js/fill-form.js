@@ -2,7 +2,6 @@ const typeEstateElement = document.querySelector('#type');
 const pricePerNightElement = document.querySelector('#price');
 const timeInSelectElement = document.querySelector('#timein');
 const timeOutSelectElement = document.querySelector('#timeout');
-const addressInputElement = document.querySelector('#address');
 const titleInputElement = document.querySelector('#title');
 const roomNumberInputElement = document.querySelector('#room_number');
 const guestsInputElement = document.querySelector('#capacity');
