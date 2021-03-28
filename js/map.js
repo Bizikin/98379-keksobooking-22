@@ -5,7 +5,6 @@ import { activeForm } from './nonactive-form.js';
 
 
 const formAd = document.querySelector('.ad-form');
-const fieldsetsFormAd = formAd.querySelectorAll('fieldset');
 
 const TOKIO_CENTER_LAT = 35.68950;
 const TOKIO_CENTER_LNG = 139.69171;
@@ -76,13 +75,13 @@ const createAdList = (data) => {
         lng: element.location.lng,
       },
       {
-        icon: pinIcon,
+        icon: secondPinIcon,
       },
     );
     marker
       .addTo(map)
       .bindPopup(
-        createCard(element),
+        
       );
   });
 };

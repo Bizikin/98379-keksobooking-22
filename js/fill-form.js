@@ -9,7 +9,7 @@ const timeOutSelectElement = document.querySelector('#timeout');
 const titleInputElement = document.querySelector('#title');
 const roomNumberInputElement = document.querySelector('#room_number');
 const guestsInputElement = document.querySelector('#capacity');
-
+const addForm = document.querySelector('.ad-form');
 const resetButton = document.querySelector('.ad-form__reset');
 const addressForm = document.querySelector('#address');
 const main = document.querySelector('main');
@@ -105,8 +105,8 @@ pricePerNightElement.addEventListener('input', function () { // Валидаци
 const resetAddForm = () => {
   addForm.reset();
   mapFilters.reset();
-  mainMarker.setLatLng({lat: CENTER_LAT, lng: CENTER_LNG});
-  addressForm.value = `${CENTER_LAT}, ${CENTER_LNG}`;
+  mainMarker.setLatLng({lat: TOKIO_CENTER_LAT, lng: TOKIO_CENTER_LNG});
+  addressForm.value = `${TOKIO_CENTER_LAT}, ${TOKIO_CENTER_LNG}`;
 };
 
 resetButton.addEventListener('click', (evt) => {
