@@ -4,7 +4,6 @@ import { showOffers } from './show-offers.js';
 import { activeForm } from './nonactive-form.js';
 
 
-const formAd = document.querySelector('.ad-form');
 
 const TOKIO_CENTER_LAT = 35.68950;
 const TOKIO_CENTER_LNG = 139.69171;
