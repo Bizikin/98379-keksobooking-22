@@ -63,7 +63,7 @@ for (let advert of adverts) {
     icon: secondPinIcon,
   });
   secondMarker.addTo(map).bindPopup(
-    showOffer(advert)
+    showOffer(advert),
   );
 }
 
@@ -82,7 +82,7 @@ const createAdList = (data) => {
     marker
       .addTo(map)
       .bindPopup(
-        showOffer(advert)
+        showOffer(element),
       );
   });
 };
