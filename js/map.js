@@ -1,6 +1,6 @@
 /* global L:readonly */
 import { adverts } from './create-advert.js';
-import { showOffers } from './show-offers.js';
+import { showOffer } from './show-offers.js';
 import { activeForm } from './nonactive-form.js';
 
 
@@ -62,7 +62,9 @@ for (let advert of adverts) {
   }, {
     icon: secondPinIcon,
   });
-  secondMarker.addTo(map).bindPopup(showOffers(adverts));
+  secondMarker.addTo(map).bindPopup(
+    showOffer(advert)
+  );
 }
 
 
@@ -80,7 +82,7 @@ const createAdList = (data) => {
     marker
       .addTo(map)
       .bindPopup(
-        
+        showOffer(advert)
       );
   });
 };
