@@ -82,7 +82,7 @@ const createAdList = (data) => {
     marker
       .addTo(map)
       .bindPopup(
-        showOffer(element)
+        showOffer(element),
       );
   });
 };
