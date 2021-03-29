@@ -1,3 +1,7 @@
+import {isEscEvent, isClickEvent} from './util.js';
+import {sendData} from './api.js';
+import {mainMarker,TOKIO_CENTER_LAT, TOKIO_CENTER_LNG} from './map.js';
+
 const typeEstateElement = document.querySelector('#type');
 const pricePerNightElement = document.querySelector('#price');
 const timeInSelectElement = document.querySelector('#timein');
@@ -5,6 +9,13 @@ const timeOutSelectElement = document.querySelector('#timeout');
 const titleInputElement = document.querySelector('#title');
 const roomNumberInputElement = document.querySelector('#room_number');
 const guestsInputElement = document.querySelector('#capacity');
+const addForm = document.querySelector('.ad-form');
+const resetButton = document.querySelector('.ad-form__reset');
+const addressForm = document.querySelector('#address');
+const main = document.querySelector('main');
+const successMessage = document.querySelector('#success').content.querySelector('.success');
+const errorMessage = document.querySelector('#error').content.querySelector('.error');
+const mapFilters = document.querySelector('.map__filters');
 
 const MIN_TITLE_LENGTH = 30;
 const MAX_TITLE_LENGTH = 100;
@@ -90,3 +101,52 @@ pricePerNightElement.addEventListener('input', function () { // Валидаци
 
   pricePerNightElement.reportValidity();
 });
+
+const resetAddForm = () => {
+  addForm.reset();
+  mapFilters.reset();
+  mainMarker.setLatLng({lat: TOKIO_CENTER_LAT, lng: TOKIO_CENTER_LNG});
+  addressForm.value = `${TOKIO_CENTER_LAT}, ${TOKIO_CENTER_LNG}`;
+};
+
+resetButton.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  resetAddForm();
+});
+
+const closeMessage = (evt) => {
+  if (isEscEvent(evt) || isClickEvent(evt)) {
+    evt.preventDefault();
+    successMessage.remove();
+    errorMessage.remove();
+    document.removeEventListener('keydown', closeMessage);
+    document.removeEventListener('mousedown', closeMessage);
+  }
+};
+
+const showSuccessMessage = () => {
+  main.append(successMessage);
+  resetAddForm();
+  document.addEventListener('keydown', closeMessage);
+  document.addEventListener('click', closeMessage);
+};
+
+const showErrorMessage = () => {
+  main.append(errorMessage);
+  document.addEventListener('keydown', closeMessage);
+  document.addEventListener('click', closeMessage);
+}
+
+const setFormSubmit = () => {
+  addForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    sendData(
+      () => showSuccessMessage(),
+      () => showErrorMessage(),
+      new FormData(evt.target),
+    );
+  });
+};
+
+export {setFormSubmit};

@@ -3,6 +3,8 @@ import { adverts } from './create-advert.js';
 import { showOffers } from './show-offers.js';
 import { activeForm } from './nonactive-form.js';
 
+
+
 const TOKIO_CENTER_LAT = 35.68950;
 const TOKIO_CENTER_LNG = 139.69171;
 const DEFAULT_ZOOM = 12;
@@ -62,3 +64,25 @@ for (let advert of adverts) {
   });
   secondMarker.addTo(map).bindPopup(showOffers(adverts));
 }
+
+
+const createAdList = (data) => {
+  data.forEach((element) => {
+    const marker = L.marker(
+      {
+        lat: element.location.lat,
+        lng: element.location.lng,
+      },
+      {
+        icon: secondPinIcon,
+      },
+    );
+    marker
+      .addTo(map)
+      .bindPopup(
+        
+      );
+  });
+};
+
+export {createAdList, mainMarker, TOKIO_CENTER_LAT, TOKIO_CENTER_LNG};
