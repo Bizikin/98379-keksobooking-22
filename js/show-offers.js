@@ -1,4 +1,3 @@
-const similarListElement = document.querySelector('.map__canvas');
 const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
 
 //Заменяем тип жилья из массива на текст
