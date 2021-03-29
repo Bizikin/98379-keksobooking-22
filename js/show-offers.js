@@ -1,20 +1,19 @@
 const cardTemplate = document.querySelector('#card').content.querySelector('.popup');
 
 //Заменяем тип жилья из массива на текст
-const stringifyOfferType = function(params) {
+const stringifyOfferType = (params) => {
   if (params === 'flat') {
     return 'Квартира'
   } else if (params === 'bungalow') {
     return 'Бунгало'
   } else if (params === 'house') {
     return 'Дом'
-  } else {
-    return 'Дворец'
-  }
+  } 
+  return 'Дворец'
 }
 
 //Заполняем список с особенностями жилья
-const setupFeatures = function(params, key) {
+const setupFeatures = (params, key) => {
   params.textContent = '';
   for (let i = 0; i < key.features.length; i++) {
     let featureItem = document.createElement('li');
@@ -25,7 +24,7 @@ const setupFeatures = function(params, key) {
 }
 
 // Создаем картинки жилья
-const setupPhotos = function(params, key) {
+const setupPhotos = (params, key) => {
   params.textContent = '';
   for (let i = 0; i < key.photos.length; i++) {
     let imgitem = document.createElement('img');
@@ -38,7 +37,7 @@ const setupPhotos = function(params, key) {
   }
 }
 
-const showOffer = function({ author, offer }) {
+const showOffer = ({ author, offer }) => {
   const cardElement = cardTemplate.cloneNode(true);
 
   cardElement.querySelector('.popup__avatar').src = author.avatar;

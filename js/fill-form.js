@@ -28,8 +28,108 @@ const FLAT_MIN_PRICE = 1000;
 const HOUSE_MIN_PRICE = 5000;
 const PALACE_MIN_PRICE = 10000;
 
+const validateRoomsAndGuests = () => { // Валидация количества комнат и гостей
+  const roomValue = Number(roomNumberInputElement.value);
+  const guestsValue = Number(guestsInputElement.value);
 
-typeEstateElement.addEventListener('click', function(e) {
+  if (roomValue < guestsValue && guestsValue !== NOT_FOR_GUESTS) {
+    roomNumberInputElement.setCustomValidity('Слишком мало комнат');
+  } else if (roomValue === MAX_ROOM & guestsValue !== NOT_FOR_GUESTS) {
+    roomNumberInputElement.setCustomValidity('Такое количество комнат не для гостей');
+  } else if (roomValue !== MAX_ROOM && guestsValue === NOT_FOR_GUESTS) {
+    roomNumberInputElement.setCustomValidity('Выберите другой вариант');
+  } else {
+    roomNumberInputElement.setCustomValidity('');
+  }
+
+  roomNumberInputElement.reportValidity();
+};
+
+const oncloseMessage = (evt) => {
+  if (isEscEvent(evt) || isClickEvent(evt)) {
+    evt.preventDefault();
+    successMessage.remove();
+    errorMessage.remove();
+    document.removeEventListener('keydown', oncloseMessage);
+    document.removeEventListener('mousedown', oncloseMessage);
+  }
+};
+
+const showSuccessMessage = () => {
+  main.append(successMessage);
+  resetAddForm();
+  document.addEventListener('keydown', oncloseMessage);
+  document.addEventListener('click', oncloseMessage);
+};
+
+const showErrorMessage = () => {
+  main.append(errorMessage);
+  document.addEventListener('keydown', oncloseMessage);
+  document.addEventListener('click', oncloseMessage);
+}
+
+const setFormSubmit = () => {
+  addForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    sendData(
+      () => showSuccessMessage(),
+      () => showErrorMessage(),
+      new FormData(evt.target),
+    );
+  });
+};
+
+const resetAddForm = () => {
+  addForm.reset();
+  mapFilters.reset();
+  mainMarker.setLatLng({lat: TOKIO_CENTER_LAT, lng: TOKIO_CENTER_LNG});
+  addressForm.value = `${TOKIO_CENTER_LAT}, ${TOKIO_CENTER_LNG}`;
+};
+
+
+
+roomNumberInputElement.addEventListener('change', () => {
+  validateRoomsAndGuests();
+});
+
+guestsInputElement.addEventListener('change', () => {
+  validateRoomsAndGuests();
+});
+
+titleInputElement.addEventListener('input', () => { // Валидация поля ввода заголовка объявления
+  const valueLength = titleInputElement.value.length;
+
+  if (valueLength < MIN_TITLE_LENGTH) {
+    titleInputElement.setCustomValidity('Ещё ' + (MIN_TITLE_LENGTH - valueLength) + ' симв.');
+  } else if (valueLength > MAX_TITLE_LENGTH) {
+    titleInputElement.setCustomValidity('Удалите лишние ' + (valueLength - MAX_TITLE_LENGTH) + ' симв.');
+  }  else {
+    titleInputElement.setCustomValidity('');
+  }
+
+  titleInputElement.reportValidity();
+});
+
+pricePerNightElement.addEventListener('input', () => { // Валидация поля ввода цены
+  const valuePrice = pricePerNightElement.value;
+
+  if (valuePrice > MAX_PRICE) {
+    pricePerNightElement.setCustomValidity(`Цена не может быть выше ${MAX_PRICE}`);
+  } else {
+    pricePerNightElement.setCustomValidity('');
+  }
+
+  pricePerNightElement.reportValidity();
+});
+
+resetButton.addEventListener('click', (evt) => {
+  evt.preventDefault();
+  resetAddForm();
+});
+
+
+typeEstateElement.addEventListener('click', (e) => {
   e.preventDefault();
   if (typeEstateElement.value === 'bungalow') {
     pricePerNightElement.placeholder = BUNGALOW_MIN_PRICE;
@@ -51,102 +151,5 @@ timeInSelectElement.addEventListener('change', (evt) => {
   timeOutSelectElement.value = time;
 });
 
-const validationRoomsAndGuests = function () { // Валидация количества комнат и гостей
-  const roomValue = Number(roomNumberInputElement.value);
-  const guestsValue = Number(guestsInputElement.value);
-
-  if (roomValue < guestsValue && guestsValue !== NOT_FOR_GUESTS) {
-    roomNumberInputElement.setCustomValidity('Слишком мало комнат');
-  } else if (roomValue === MAX_ROOM & guestsValue !== NOT_FOR_GUESTS) {
-    roomNumberInputElement.setCustomValidity('Такое количество комнат не для гостей');
-  } else if (roomValue !== MAX_ROOM && guestsValue === NOT_FOR_GUESTS) {
-    roomNumberInputElement.setCustomValidity('Выберите другой вариант');
-  } else {
-    roomNumberInputElement.setCustomValidity('');
-  }
-
-  roomNumberInputElement.reportValidity();
-};
-
-roomNumberInputElement.addEventListener('change', function () {
-  validationRoomsAndGuests();
-});
-
-guestsInputElement.addEventListener('change', function () {
-  validationRoomsAndGuests();
-});
-
-titleInputElement.addEventListener('input', function () { // Валидация поля ввода заголовка объявления
-  const valueLength = titleInputElement.value.length;
-
-  if (valueLength < MIN_TITLE_LENGTH) {
-    titleInputElement.setCustomValidity('Ещё ' + (MIN_TITLE_LENGTH - valueLength) + ' симв.');
-  } else if (valueLength > MAX_TITLE_LENGTH) {
-    titleInputElement.setCustomValidity('Удалите лишние ' + (valueLength - MAX_TITLE_LENGTH) + ' симв.');
-  }  else {
-    titleInputElement.setCustomValidity('');
-  }
-
-  titleInputElement.reportValidity();
-});
-
-pricePerNightElement.addEventListener('input', function () { // Валидация поля ввода цены
-  const valuePrice = pricePerNightElement.value;
-
-  if (valuePrice > MAX_PRICE) {
-    pricePerNightElement.setCustomValidity(`Цена не может быть выше ${MAX_PRICE}`);
-  } else {
-    pricePerNightElement.setCustomValidity('');
-  }
-
-  pricePerNightElement.reportValidity();
-});
-
-const resetAddForm = () => {
-  addForm.reset();
-  mapFilters.reset();
-  mainMarker.setLatLng({lat: TOKIO_CENTER_LAT, lng: TOKIO_CENTER_LNG});
-  addressForm.value = `${TOKIO_CENTER_LAT}, ${TOKIO_CENTER_LNG}`;
-};
-
-resetButton.addEventListener('click', (evt) => {
-  evt.preventDefault();
-  resetAddForm();
-});
-
-const closeMessage = (evt) => {
-  if (isEscEvent(evt) || isClickEvent(evt)) {
-    evt.preventDefault();
-    successMessage.remove();
-    errorMessage.remove();
-    document.removeEventListener('keydown', closeMessage);
-    document.removeEventListener('mousedown', closeMessage);
-  }
-};
-
-const showSuccessMessage = () => {
-  main.append(successMessage);
-  resetAddForm();
-  document.addEventListener('keydown', closeMessage);
-  document.addEventListener('click', closeMessage);
-};
-
-const showErrorMessage = () => {
-  main.append(errorMessage);
-  document.addEventListener('keydown', closeMessage);
-  document.addEventListener('click', closeMessage);
-}
-
-const setFormSubmit = () => {
-  addForm.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-
-    sendData(
-      () => showSuccessMessage(),
-      () => showErrorMessage(),
-      new FormData(evt.target),
-    );
-  });
-};
 
 export {setFormSubmit};

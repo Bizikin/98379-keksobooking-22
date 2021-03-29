@@ -1,8 +1,8 @@
-let getRandomInt = function(min, max) {
+let getRandomInt = (min, max) => {
   return getRandomFloat(min, max, 0);
 }
 
-let getRandomFloat = function(min, max, countComma) {
+let getRandomFloat = (min, max, countComma) => {
   if (max > min && min >= 0) {
     return parseFloat(((Math.random() * (max - min)) + min).toFixed(countComma));
   } else {
@@ -10,16 +10,16 @@ let getRandomFloat = function(min, max, countComma) {
   }
 }
 
-let getRandomValue = function(obj) {
+let getRandomValue = (obj) => {
   return obj[getRandomInt(0, obj.length - 1)];
 }
 
-let getRandomArray = function(array, values) {
-  let newArray = [];
+let getRandomArray = (array, values) => {
+  let list = [];
   for (let i = 0; i < values; i++) {
-    newArray.push(array[i]);
+    list.push(array[i]);
   }
-  return newArray;
+  return list;
 }
 
 const ALERT_SHOW_TIME = 5000;

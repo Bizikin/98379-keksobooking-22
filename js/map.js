@@ -1,5 +1,5 @@
 /* global L:readonly */
-import { adverts } from './create-advert.js';
+// import { adverts } from './create-advert.js';
 import { showOffer } from './show-offers.js';
 import { activeForm } from './nonactive-form.js';
 
@@ -55,17 +55,6 @@ mainMarker.on('move', (evt) => {
   address.value = `${evt.target.getLatLng().lat.toFixed(DOTSAFTERZERO)}, ${evt.target.getLatLng().lng.toFixed(DOTSAFTERZERO)}`;
 });
 
-for (let advert of adverts) {
-  const secondMarker = L.marker({
-    lat: advert.location.x,
-    lng: advert.location.y,
-  }, {
-    icon: secondPinIcon,
-  });
-  secondMarker.addTo(map).bindPopup(
-    showOffer(advert),
-  );
-}
 
 
 const createAdList = (data) => {
