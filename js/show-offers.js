@@ -3,11 +3,11 @@ const cardTemplate = document.querySelector('#card').content.querySelector('.pop
 
 //Заменяем тип жилья из массива на текст
 const stringifyOfferType = function(params) {
-  if (params == 'flat') {
+  if (params === 'flat') {
     return 'Квартира'
-  } else if (params == 'bungalow') {
+  } else if (params === 'bungalow') {
     return 'Бунгало'
-  } else if (params == 'house') {
+  } else if (params === 'house') {
     return 'Дом'
   } else {
     return 'Дворец'
