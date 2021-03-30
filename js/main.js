@@ -1,14 +1,15 @@
-import './fill-form.js';
-import './nonactive-form.js';
-import './map.js';
 
+/* global _:readonly */
 
-import {getData} from './api.js';
-import {createAdList} from './map.js'
-import {setFormSubmit} from './fill-form.js'
+import {initMap} from './map.js';
+import {setFiltersMap} from './map-filters.js'
+import {getData} from './server.js';
+import {setAvatarPhoto} from './photo.js';
 
-getData((data) => {
-  createAdList(data);
-});
+const RERENDER_TIME = 500;
 
-setFormSubmit();
+getData().then(_.debounce(setFiltersMap,  RERENDER_TIME));
+
+initMap();
+setAvatarPhoto();
+
