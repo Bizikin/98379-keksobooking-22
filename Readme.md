@@ -1,8 +1,7 @@
 # Личный проект «Кексобукинг»
 
-* Студент: [Роман Бизикин](https://up.htmlacademy.ru/javascript/22/user/98379).
-* Наставник: [Сергей Рожков](https://htmlacademy.ru/profile/id1069033).
-
+* Студент: [Константин Лесняк](https://up.htmlacademy.ru/javascript/22/user/885303).
+* Наставник: [Сергей Рожков] (https://htmlacademy.ru/profile/id1069033).
 
 ---
 

@@ -1,30 +1,8 @@
-let getRandomInt = (min, max) => {
-  return getRandomFloat(min, max, 0);
-}
+import {setFormDefault} from './form.js';
 
-let getRandomFloat = (min, max, countComma) => {
-  if (max > min && min >= 0) {
-    return parseFloat(((Math.random() * (max - min)) + min).toFixed(countComma));
-  } else {
-    alert('Ошибка, значение минимальной переменной не должно быть отрицательным, больше максимального или равным ему');
-  }
-}
+const ALERT_SHOW_TIME = 10000;
 
-let getRandomValue = (obj) => {
-  return obj[getRandomInt(0, obj.length - 1)];
-}
-
-let getRandomArray = (array, values) => {
-  let list = [];
-  for (let i = 0; i < values; i++) {
-    list.push(array[i]);
-  }
-  return list;
-}
-
-const ALERT_SHOW_TIME = 5000;
-
-const showAlert = (message) => {
+function showAlert (message) {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = 100;
   alertContainer.style.position = 'absolute';
@@ -34,24 +12,67 @@ const showAlert = (message) => {
   alertContainer.style.padding = '10px 3px';
   alertContainer.style.fontSize = '30px';
   alertContainer.style.textAlign = 'center';
-  alertContainer.style.backgroundColor = 'red';
+  alertContainer.style.backgroundColor = '#FF7F50';
 
   alertContainer.textContent = message;
 
   document.body.append(alertContainer);
 
+  setTimeDelay(alertContainer);
+}
+
+function setTimeDelay (element) {
   setTimeout(() => {
-    alertContainer.remove();
+    element.remove();
   }, ALERT_SHOW_TIME);
 }
 
-const isEscEvent = (evt) => {
-  return evt.key === 'Escape' || evt.key === 'Esc';
-};
+const success = document.querySelector('#success').content;
 
-const isClickEvent = (evt) => {
-  return evt.type === 'click';
-};
+function pushSuccessMessage() {
+  const messageContainer = document.querySelector('main');
+  messageContainer.appendChild(success);
+  const message = messageContainer.querySelector('.success');
 
+  message.addEventListener('click', (evt) => {
+    hideMessage(messageContainer, message);
+    setFormDefault(evt);
+  });
 
-export {getRandomInt, getRandomFloat, getRandomValue, getRandomArray, showAlert, isEscEvent, isClickEvent};
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === ('Escape' || 'Esc')) {
+      evt.preventDefault();
+      hideMessage(messageContainer, message);
+      setFormDefault(evt);
+    }
+  });
+}
+
+function hideMessage (root, element) {
+  root.removeChild(element);
+}
+
+function pushFailureMessage() {
+  const messageContainer = document.querySelector('main');
+  const failure = document.querySelector('#error').content;
+  messageContainer.appendChild(failure);
+  const message = messageContainer.querySelector('.error');
+  const buttonError = message.querySelector('.error__button');
+
+  message.addEventListener('click', () => {
+    hideMessage(messageContainer, message);
+    setFormDefault();
+  });
+
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === ('Escape' || 'Esc')) {
+      hideMessage(messageContainer, message);
+    }
+  });
+
+  buttonError.addEventListener('click', () => {
+    message.classList.add('hidden');
+  });
+}
+
+export {showAlert, pushSuccessMessage, pushFailureMessage};
